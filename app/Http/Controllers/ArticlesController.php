@@ -8,7 +8,7 @@ use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Request;
+
 
 class ArticlesController extends Controller
 {
@@ -22,7 +22,7 @@ class ArticlesController extends Controller
     public function show($id)
     {
         $article = Article::findOrFail($id);
-        dd($article->published_at);
+        //  dd($article->published_at);
 
         return view('articles.show',compact('article'));
     }
@@ -32,14 +32,22 @@ class ArticlesController extends Controller
        return view('articles.create');
     }
 
-    public function store()
+    public function store(Requests\CreateArticleRequest $request)
     {
-       /* $input = Request::all();
-
-        $input['published_at'] = Carbon::now();
-
-        Article::create($input);*/
-        Article::create(Request::all());
+        Article::create($request->all());
         return redirect('articles');
+    }
+
+    public function edit($id)
+    {
+        $article = Article::findOrFail($id);
+        return view('articles.edit',compact('article'));
+    }
+
+    public function update($id,\Request $request)
+    {
+        //dd($request->all());
+        $article = Article::findOrFail($id);
+        $article->update($request->all());
     }
 }
