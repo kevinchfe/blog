@@ -11,6 +11,7 @@ class Article extends Model
         'title',
         'body',
         'published_at',
+        'user_id'
     ];
 
     //将published_at变为Carbon对象
@@ -26,5 +27,14 @@ class Article extends Model
     public function scopePublished($query)
     {
         return $query->where('published_at','<=',Carbon::now());
+    }
+
+    /**
+     * 根据articles查找user
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }
