@@ -28,3 +28,7 @@ Route::controllers([
     'auth'=>'Auth\AuthController',
     'password'=>'Auth\PasswordController'
 ]);
+
+Route::get('foo',['middleware'=>'manager', function(){
+    return 'This Page is only show for AteamManager';
+}]);
