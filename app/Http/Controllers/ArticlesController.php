@@ -25,8 +25,9 @@ class ArticlesController extends Controller
         return view('articles.index', compact('articles'));
     }
 
-    public function show($id)
+    public function show($id)//路由模型绑定
     {
+        dd($id);
         $article = Article::findOrFail($id);
         //  dd($article->published_at);
 

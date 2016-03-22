@@ -32,3 +32,4 @@ Route::controllers([
 Route::get('foo',['middleware'=>'manager', function(){
     return 'This Page is only show for AteamManager';
 }]);
+
