@@ -25,10 +25,10 @@ class ArticlesController extends Controller
         return view('articles.index', compact('articles'));
     }
 
-    public function show($id)//路由模型绑定
+    public function show(Article $article)//路由模型绑定
     {
-        dd($id);
-        $article = Article::findOrFail($id);
+        /*dd($id);
+        $article = Article::findOrFail($id);*/
         //  dd($article->published_at);
 
         return view('articles.show',compact('article'));
@@ -41,10 +41,16 @@ class ArticlesController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        $articles = new Article($request->all());
-        Auth::user()->articles()->save($articles);
-        //Article::create($request->all());
-        return redirect('articles');
+        /*$articles = new Article($request->all());
+        Auth::user()->articles()->save($articles);*///或者下面这个方法
+        Auth::user()->articles()->create($request->all());
+        //session()->flash('flash_message','Your article created success!');
+        //\Session::flash('flash_message','Your article created success!');同上一致
+        //return redirect('articles');
+        return redirect('articles')->with([
+            'flash_message'=>'Your article created successfully!',
+           // 'flash_message_important'=>'',
+        ]);
     }
 
     public function edit($id)
