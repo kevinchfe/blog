@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Blog</title>
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
 <div class="container">
@@ -21,7 +22,7 @@
     </script>
 
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/js/select2.min.js"></script>
 @yield('footer')
 </body>
 </html>
